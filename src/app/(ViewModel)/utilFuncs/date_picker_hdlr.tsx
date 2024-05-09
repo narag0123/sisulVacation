@@ -44,6 +44,16 @@ export const workTypeSelector = (
             timeSetEnd = 8;
             break;
 
+        case "주":
+            timeSetStart = 8;
+            timeSetEnd = 20;
+            break;
+
+        case "야":
+            timeSetStart = 20;
+            timeSetEnd = 8;
+            break;
+
         default:
             timeSetStart = 8;
             timeSetEnd = 17;
@@ -90,15 +100,27 @@ export const workTypeChangeHdlr = (
             timeSetEnd = 17;
 
             break;
+
         case "중":
             timeSetStart = 13;
             timeSetEnd = 22;
             break;
+
         case "말":
             timeSetStart = 22;
             timeSetEnd = 8;
-
             break;
+
+        case "주":
+            timeSetStart = 8;
+            timeSetEnd = 20;
+            break;
+
+        case "야":
+            timeSetStart = 20;
+            timeSetEnd = 8;
+            break;
+
         default:
             timeSetStart = 8;
             timeSetEnd = 17;

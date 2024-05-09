@@ -220,58 +220,96 @@ const ModifyModal: React.FC<Props> = ({
                 }}
             >
                 <hr className="border-black40" />
-                <div className="flex w-full ">
-                    <button
-                        className={`w-1/3 border-[1px] border-r-0 border-black60 py-1 rounded-l-xl ${
-                            Vtype == "초" &&
-                            "bg-[black] text-bg"
-                        }`}
-                        onClick={(e) => {
-                            workTypeHler(
-                                e,
-                                "초",
-                                setStartDate,
-                                setEndDate
-                            );
-                            setVType("초");
-                        }}
-                    >
-                        초번
-                    </button>
-                    <button
-                        className={`w-1/3 border-[1px] border-r-0 border-black60 py-1 ${
-                            Vtype == "중" &&
-                            "bg-[black] text-bg"
-                        }`}
-                        onClick={(e) => {
-                            workTypeHler(
-                                e,
-                                "중",
-                                setStartDate,
-                                setEndDate
-                            );
-                            setVType("중");
-                        }}
-                    >
-                        중번
-                    </button>
-                    <button
-                        className={`w-1/3 border-[1px] border-black60 py-1 rounded-r-xl ${
-                            Vtype == "말" &&
-                            "bg-[black] text-bg"
-                        }`}
-                        onClick={(e) => {
-                            workTypeHler(
-                                e,
-                                "말",
-                                setStartDate,
-                                setEndDate
-                            );
-                            setVType("말");
-                        }}
-                    >
-                        말번
-                    </button>
+                <div className="flex flex-col w-full">
+                    <div className="flex w-full ">
+                        <button
+                            className={`w-1/3 border-[1px] border-r-0 border-black60 py-1 rounded-tl-xl ${
+                                Vtype == "초" &&
+                                "bg-[black] text-bg"
+                            }`}
+                            onClick={(e) => {
+                                workTypeHler(
+                                    e,
+                                    "초",
+                                    setStartDate,
+                                    setEndDate
+                                );
+                                setVType("초");
+                            }}
+                        >
+                            초번
+                        </button>
+                        <button
+                            className={`w-1/3 border-[1px] border-r-0 border-black60 py-1 ${
+                                Vtype == "중" &&
+                                "bg-[black] text-bg"
+                            }`}
+                            onClick={(e) => {
+                                workTypeHler(
+                                    e,
+                                    "중",
+                                    setStartDate,
+                                    setEndDate
+                                );
+                                setVType("중");
+                            }}
+                        >
+                            중번
+                        </button>
+                        <button
+                            className={`w-1/3 border-[1px] border-black60 py-1 rounded-tr-xl ${
+                                Vtype == "말" &&
+                                "bg-[black] text-bg"
+                            }`}
+                            onClick={(e) => {
+                                workTypeHler(
+                                    e,
+                                    "말",
+                                    setStartDate,
+                                    setEndDate
+                                );
+                                setVType("말");
+                            }}
+                        >
+                            말번
+                        </button>
+                    </div>
+                    <div className="flex w-full">
+                        <button
+                            className={`w-1/2 border-[1px] border-r-0 border-t-0 border-black60 py-1 rounded-bl-xl ${
+                                Vtype == "주" &&
+                                "bg-[black] text-bg"
+                            }`}
+                            onClick={(e) => {
+                                workTypeHler(
+                                    e,
+                                    "주",
+                                    setStartDate,
+                                    setEndDate
+                                );
+                                setVType("주");
+                            }}
+                        >
+                            주간
+                        </button>
+                        <button
+                            className={`w-1/2 border-[1px] border-t-0 border-black60 py-1 rounded-br-xl ${
+                                Vtype == "야" &&
+                                "bg-[black] text-bg"
+                            }`}
+                            onClick={(e) => {
+                                workTypeHler(
+                                    e,
+                                    "야",
+                                    setStartDate,
+                                    setEndDate
+                                );
+                                setVType("야");
+                            }}
+                        >
+                            야간
+                        </button>
+                    </div>
                 </div>
                 <div className="flex flex-col gap-[10px]">
                     {/* start date */}
