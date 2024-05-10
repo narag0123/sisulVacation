@@ -48,6 +48,9 @@ const Info = () => {
         companyCode: apiUserInfo?.companyCode,
     };
 
+    /**
+     * updateFirebaseAuthUser를 호출하기 위한함수. 지금생각하면 updateFirebaseAuthUser를 직접 불러와도 될거같긴함..
+     */
     const userInfoUpdateHdlr = (
         e: FormEvent<HTMLFormElement>
     ) => {

@@ -85,7 +85,6 @@ const HeaderComponent: React.FC<Props> = memo(
                         src="/asset/img/square.grid.2x2@10x.png"
                         className=" w-[18px] object-cover"
                         onClick={() => {
-                            // TODO: 그룹필터 만들기
                             setIsFilter(true);
                         }}
                     />

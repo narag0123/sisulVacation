@@ -37,16 +37,12 @@ interface Props {
 
 const ModifyModal: React.FC<Props> = ({
     tableArg,
-    setTableArg,
     year,
     month,
 }) => {
     const context = useContext(UseContext);
     const {
-        isEventAddModal,
-        setIsEventAddModal,
         user,
-        setUser,
         setIsModifyModal,
         apiVacations,
         setApiVacations,
@@ -54,6 +50,9 @@ const ModifyModal: React.FC<Props> = ({
         setApiUserInfo,
     } = context;
 
+    /**
+     * apiVacation을 docId에 따라 1개만 가져오도록 필터링한 것
+     */
     const apiVacationEventFilter: DocumentData | null =
         apiVacations
             ? apiVacations.filter(
@@ -92,9 +91,10 @@ const ModifyModal: React.FC<Props> = ({
             ? apiVacationEventFilter.type
             : null
     );
-    const timestamp = Timestamp.now(); // 타임스탬프
 
-    // 보낼거
+    /**
+     * db로 전송 보낼거
+     */
     const api_vacation_modify_data: TApiVacation = {
         userId: `${user?.uid !== null ? user?.uid : ""}`,
 
@@ -319,8 +319,6 @@ const ModifyModal: React.FC<Props> = ({
                             label="시작일"
                             value={dayjs(startDate)}
                             onAccept={(newValue) => {
-                                // setStartDate(newValue);
-                                // setEndDate(newValue);
                                 workTypeChangeHdlr(
                                     newValue,
                                     Vtype,
@@ -342,7 +340,6 @@ const ModifyModal: React.FC<Props> = ({
                             ampm={false}
                             value={endDate}
                             onAccept={(newValue) => {
-                                // setEndDate(newValue);
                                 workTypeChangeHdlr(
                                     newValue,
                                     Vtype,

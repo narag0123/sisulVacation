@@ -15,7 +15,12 @@ import {
     updateUserInfo,
 } from "./firebase_user_data_vm";
 
-// 로그인 함수
+/**
+ * 로그인 함수. 로그인 후 / 로 리다이렉트함
+ * @param email 이메일, 회사메일이면 좋음
+ * @param pwd 비번
+ * @router 회원가입 후 /로 리다이렉트
+ */
 export const login = async (
     e: FormEvent,
     email: string,
@@ -39,12 +44,16 @@ export const login = async (
     }
 };
 
-// 로그아웃 함수
+/** 로그아웃 함수
+ * */
 export const logout = async () => {
     await signOut(auth);
 };
 
-// 회원가입 함수
+/** 회원가입 함수. Firebase Authenticate에 유저정보 저장하고, createUserInfo를 호출하여 DB에 저장. preventDefault 걸려있고, 요청 성공시 /로 리다이렉트 걸려있음. displayName은 이 단계에서 설정됨.
+ * @param api_user_data 회원가입시 받는 양식임 TApiUser타입으로 지정되어있음
+ * @router 회원가입후 /로 리다이렉트함
+ * */
 export const register = async (
     e: FormEvent<HTMLFormElement>,
     api_user_data: TApiUser,
@@ -76,7 +85,9 @@ export const register = async (
     }
 };
 
-// 비번 초기화
+/**
+ * 비번 초기화. 메일보내서 초기화됨.
+ * */
 export const resetPwd = async (email: string) => {
     const confirmation = window.confirm(
         "비밀번호를 초기화 하시겠습니까?"
@@ -99,7 +110,9 @@ export const resetPwd = async (email: string) => {
     }
 };
 
-// 유저 정보 업데이트
+/** Firebase Authentication의 유저 정보의 displayName 업데이트.
+ * @param api_user_data 변경사항을 전송할 유저의 데이터. TApiUser타입의 일부분만 가져다가 사용함.
+ * */
 export const updateFireBaseAuthUser = async (
     e: FormEvent<HTMLFormElement>,
     api_user_data: Partial<TApiUser>
@@ -113,8 +126,6 @@ export const updateFireBaseAuthUser = async (
                 displayName: api_user_data.name,
             })
                 .then(() => {
-                    console.log(auth.currentUser?.uid);
-                    console.log(api_user_data);
                     updateUserInfo(
                         auth.currentUser?.uid!,
                         api_user_data
@@ -127,7 +138,6 @@ export const updateFireBaseAuthUser = async (
         }
 
         alert("업데이트가 완료되었습니다");
-        // router.push("/");
     } catch (err) {
         alert("새로고침 후 다시시도 해 주세요");
         console.log(err);

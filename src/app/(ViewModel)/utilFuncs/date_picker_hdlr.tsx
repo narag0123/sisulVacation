@@ -1,6 +1,10 @@
 import dayjs, { Dayjs } from "dayjs";
 import { FormEvent, SetStateAction } from "react";
 
+/**
+ * 하위함수인 workTypeSelector를 preventDefault()함
+ * @param type "초", "중", "말", "주", "야"
+ */
 export const workTypeHler = (
     e: FormEvent,
     type: string,
@@ -15,6 +19,10 @@ export const workTypeHler = (
     workTypeSelector(type, setStartDate, setEndDate);
 };
 
+/**
+ * startDate와 endDate의 hour값을 초,중,말 등의 타입에 따라 case-switch로 작성함
+ * @param type "초", "중", "말", "주", "야"
+ */
 export const workTypeSelector = (
     type: string,
     setStartDate: React.Dispatch<
@@ -24,7 +32,6 @@ export const workTypeSelector = (
         React.SetStateAction<Dayjs | null>
     >
 ) => {
-    // type: 1 초번 2:중번 3:말번
     var timeSetStart: number;
     var timeSetEnd: number;
 
@@ -80,6 +87,11 @@ export const workTypeSelector = (
     });
 };
 
+/**
+ * DateTimePicker에서 newValue를 사용하여 startDate와 endDate의 hour값과 Vtype을 작성함
+ * @param newValue DateTimePicker에서 넘어온 값
+ * @param Vtype 초,중,말,주,야
+ */
 export const workTypeChangeHdlr = (
     newValue: dayjs.Dayjs | null,
     Vtype: string,

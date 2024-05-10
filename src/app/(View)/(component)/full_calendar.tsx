@@ -40,7 +40,6 @@ const FullCalendarJS = memo(() => {
         isModifyModal,
         setIsModifyModal,
         isEventAddModal,
-        setIsEventAddModal,
         isFilter,
     } = context;
     const calendarRef = useRef<FullCalendar | null>(null);
@@ -54,35 +53,38 @@ const FullCalendarJS = memo(() => {
     const [tableArg, setTableArg] =
         useState<EventClickArg | null>(null);
 
-    const [isDateClick, setIsDateClick] =
-        useState<boolean>(false);
-
+    // FullCalendar의 datesSet 이벤트 리스너 등록
     useEffect(() => {
-        // FullCalendar의 datesSet 이벤트 리스너 등록
         if (calendarRef.current) {
             const calendarApi =
                 calendarRef.current.getApi();
-            calendarApi.on("datesSet", handleDatesSet);
+            calendarApi.on("datesSet", handleDatesSet); // 이벤트 리스너
         }
 
         handleDatesSet();
     }, [calendarRef.current]);
 
+    /**  월 별 get요청 */
     const handleDatesSet = () => {
         getVacationsCollection(
             formatter.year(calendarRef),
             formatter.monthNumber(calendarRef),
             setApiVacations
         );
-    }; // 월 별 get요청
+    };
 
-    // 이벤트 블럭 클릭시 동작하는 함수
+    /** 이벤트 블럭 클릭시 동작하는 함수
+     * @param {EventClickArg} arg 테이블 블럭 정보
+     */
     function handleDateClick(arg: EventClickArg) {
-        setTableArg(arg);
-        setIsModifyModal(true);
+        setTableArg(arg); // 날짜에 있는 블럭 정보
+        setIsModifyModal(true); // Modify Modal 스위치
     }
 
-    // rendering 되는 이벤트 블럭 디자인
+    /**
+     * rendering 되는 이벤트 블럭 디자인.
+     *  @param {EventContentArg} eventInfo 이벤트 정보 tableArg의 단순버전
+     */
     const renderEventContent = (
         eventInfo: EventContentArg
     ) => {
@@ -130,8 +132,6 @@ const FullCalendarJS = memo(() => {
                 isSlided={isSlided}
             />
 
-            {/* <GroupFilter /> */}
-            {/* TODO: 날짜 클릭해서 ADD EVENT 동작하도록 */}
             <div className="my-5 fullCalContainer">
                 <FullCalendar
                     plugins={[

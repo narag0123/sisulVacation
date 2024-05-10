@@ -4,10 +4,7 @@ import React, {
     useEffect,
     useState,
 } from "react";
-
 import { DateTimePicker } from "@mui/x-date-pickers";
-import { v4 } from "uuid";
-
 import dayjs, { Dayjs } from "dayjs";
 import { getUserInfoCollection } from "@/app/(ViewModel)/authenticate/firebase_user_data_vm";
 import { Timestamp } from "firebase/firestore";
@@ -18,15 +15,12 @@ import {
 import {
     workTypeChangeHdlr,
     workTypeHler,
-    workTypeSelector,
 } from "@/app/(ViewModel)/utilFuncs/date_picker_hdlr";
 import {
     AnimatePresence,
     easeInOut,
     motion,
-    spring,
 } from "framer-motion";
-import { duration } from "@mui/material";
 import { variantAddModal } from "@/app/(Model)/framer/framer_variant";
 import { EventClickArg } from "@fullcalendar/core/index.js";
 import { DateClickArg } from "@fullcalendar/interaction";
@@ -43,12 +37,8 @@ interface Props {
 }
 
 const AddEventModal: React.FC<Props> = ({
-    tableArg,
-    setTableArg,
     year,
     month,
-
-    dateClickArg,
 }) => {
     const context = useContext(UseContext);
     const {
@@ -69,7 +59,7 @@ const AddEventModal: React.FC<Props> = ({
     const [memo, setMemo] = useState<string>("");
     const [Vtype, setVType] = useState<string>("");
 
-    // 보낼거
+    /** db로 전송보낼거 */
     const api_vacation_data: TApiVacation = {
         userId: `${user?.uid !== null ? user?.uid : ""}`,
 

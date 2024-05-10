@@ -94,3 +94,32 @@ export const variantFilterModal = {
         },
     },
 };
+
+export const variantHistoryCard = {
+    initFilterModal: {
+        height: 0,
+        opacity: 0,
+        transition: {
+            height: { duration: 0.1, type: "easeInOut" },
+        },
+    },
+    animateFilterModal: {
+        height: 100,
+        opacity: 1,
+        transition: {
+            height: {
+                duration: 0.1,
+                type: "easeInOut",
+            },
+        },
+    },
+    exitFilterModal: {
+        height: 0,
+        opacity: 0,
+        transition: {
+            height: {
+                type: "easeInOut",
+            },
+        },
+    },
+};

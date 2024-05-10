@@ -31,16 +31,12 @@ const MainPage = () => {
                 dateAdapter={AdapterDayjs}
                 adapterLocale="ko"
             >
-                {/* <AnimatePresence>
-                    {isEventAddModal && <AddEventModal />}
-                </AnimatePresence> */}
                 <AnimatePresence>
                     {(isEventAddModal ||
                         isUserMenu ||
                         isModifyModal ||
                         isFilter) && (
                         // 검은색 가림막
-
                         <motion.div
                             className="w-full h-full absolute top-0 left-0 z-10 bg-black100"
                             initial={{ opacity: 0 }}
