@@ -11,10 +11,33 @@ const FilterModal = () => {
     const context = useContext(UseContext);
     const { nowFilter, setNowFilter } = context;
 
+    /**
+     * nowFilter의 키값에 따라 tailwind 다르게 적용함
+     * @param arg A,B,C,D중 결정됨.
+     */
     const filterTailwindClassName = (arg: FilterKey) => {
+        var bgBtnColor: string;
+        switch (arg) {
+            case "A":
+                bgBtnColor = "bg-[#ffa68e]";
+                break;
+            case "B":
+                bgBtnColor = "bg-[#ffd295]";
+                break;
+            case "C":
+                bgBtnColor = "bg-[#b0cfcf]";
+                break;
+            case "D":
+                bgBtnColor = "bg-[#ce9ae7]";
+                break;
+            default:
+                bgBtnColor = "bg-bg";
+                break;
+        }
+
         return nowFilter[arg] === true
-            ? ` bg-bg shadow-inner bg-gradient-filter-btn-reverse`
-            : "shadow-xl -translate-x-1 -translate-y-1 bg-gradient-filter-btn";
+            ? `${bgBtnColor} shadow-inner`
+            : `shadow-xl -translate-x-1 -translate-y-1 bg-gradient-filter-btn trasition-all`;
     };
 
     return (
