@@ -87,6 +87,7 @@ export const workTypeSelector = (
     });
 };
 
+// TODO: 시간 안바뀜.
 /**
  * DateTimePicker에서 newValue를 사용하여 startDate와 endDate의 hour값과 Vtype을 작성함
  * @param newValue DateTimePicker에서 넘어온 값
@@ -110,7 +111,6 @@ export const workTypeChangeHdlr = (
         case "초":
             timeSetStart = 8;
             timeSetEnd = 17;
-
             break;
 
         case "중":
@@ -138,20 +138,9 @@ export const workTypeChangeHdlr = (
             timeSetEnd = 17;
             break;
     }
-    setStartDate &&
-        setStartDate(
-            newValue &&
-                newValue
-                    .set("hour", timeSetStart)
-                    .set("minute", 0)
-        );
+    setStartDate && setStartDate(newValue);
 
-    setEndDate &&
-        setEndDate(
-            newValue &&
-                newValue
-                    .set("hour", timeSetEnd)
-                    .set("minute", 0)
-        );
+    setEndDate && setEndDate(newValue);
+
     setVType(Vtype);
 };
