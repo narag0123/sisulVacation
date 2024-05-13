@@ -96,9 +96,6 @@ const AddEventModal: React.FC<Props> = ({
         timeStamp: Timestamp.now().toDate().toString(),
     };
 
-    console.log(api_vacation_data);
-    console.log(startDate?.format("HH:mm"));
-
     useEffect(() => {
         if (user !== null) {
             getUserInfoCollection(
@@ -282,26 +279,11 @@ const AddEventModal: React.FC<Props> = ({
                                             onChange={(
                                                 newValue
                                             ) => {
-                                                console.log(
-                                                    startDate?.format(
-                                                        "YYYY-MM-DD HH:mm"
-                                                    )
-                                                );
-                                                console.log(
-                                                    endDate?.format(
-                                                        "YYYY-MM-DD HH:mm"
-                                                    )
-                                                );
-                                                console.log(
-                                                    newValue?.format(
-                                                        "YYYY-MM-DD HH:mm"
-                                                    )
-                                                );
-
                                                 workTypeChangeHdlr(
                                                     newValue,
                                                     Vtype,
                                                     setVType,
+                                                    "시작",
                                                     setStartDate,
                                                     setEndDate
                                                 );
@@ -325,6 +307,7 @@ const AddEventModal: React.FC<Props> = ({
                                                     newValue,
                                                     Vtype,
                                                     setVType,
+                                                    "종료",
                                                     undefined,
                                                     setEndDate
                                                 );

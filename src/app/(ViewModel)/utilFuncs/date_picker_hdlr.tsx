@@ -92,11 +92,13 @@ export const workTypeSelector = (
  * DateTimePicker에서 newValue를 사용하여 startDate와 endDate의 hour값과 Vtype을 작성함
  * @param newValue DateTimePicker에서 넘어온 값
  * @param Vtype 초,중,말,주,야
+ * @param typeOfBtn "시작" / "종료"
  */
 export const workTypeChangeHdlr = (
     newValue: dayjs.Dayjs | null,
     Vtype: string,
     setVType: React.Dispatch<SetStateAction<string>>,
+    typeOfBtn: string,
     setStartDate?: React.Dispatch<
         SetStateAction<Dayjs | null>
     >,
@@ -138,9 +140,19 @@ export const workTypeChangeHdlr = (
             timeSetEnd = 17;
             break;
     }
-    setStartDate && setStartDate(newValue);
 
-    setEndDate && setEndDate(newValue);
+    if (typeOfBtn === "시작") {
+        setStartDate && setStartDate(newValue);
+
+        setEndDate &&
+            setEndDate((prev) =>
+                prev && newValue
+                    ? newValue.set("hour", prev.hour())
+                    : prev
+            );
+    } else {
+        setEndDate && setEndDate(newValue);
+    }
 
     setVType(Vtype);
 };

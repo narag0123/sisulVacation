@@ -323,6 +323,7 @@ const ModifyModal: React.FC<Props> = ({
                                     newValue,
                                     Vtype,
                                     setVType,
+                                    "시작",
                                     setStartDate,
                                     setEndDate
                                 );
@@ -344,6 +345,7 @@ const ModifyModal: React.FC<Props> = ({
                                     newValue,
                                     Vtype,
                                     setVType,
+                                    "종료",
                                     undefined,
                                     setEndDate
                                 );
