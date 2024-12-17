@@ -1,3 +1,4 @@
+import FullCalendar from "@fullcalendar/react";
 import { format } from "date-fns";
 
 export function goPrev(ref: any): void {
@@ -8,6 +9,20 @@ export function goPrev(ref: any): void {
 export function goNext(ref: any): void {
     const calendarApi = ref.current.getApi();
     calendarApi.next();
+}
+
+export function goSpecificTime(
+    ref: React.MutableRefObject<FullCalendar | null>,
+    moveYear: number,
+    moveMonth: number
+): void {
+    if (!ref?.current) {
+        console.error("calendarRef is not initialized.");
+        return;
+    }
+
+    const calendarApi = ref.current.getApi();
+    calendarApi.gotoDate(new Date(moveYear, moveMonth, 1));
 }
 
 export const formatter = {

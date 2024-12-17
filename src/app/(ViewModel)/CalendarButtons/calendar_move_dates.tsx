@@ -1,5 +1,9 @@
 import FullCalendar from "@fullcalendar/react";
-import { goNext, goPrev } from "./calendar_buttons";
+import {
+    goNext,
+    goPrev,
+    goSpecificTime,
+} from "./calendar_buttons";
 
 export const handleTouchStart = (
     e: React.TouchEvent<HTMLElement>,

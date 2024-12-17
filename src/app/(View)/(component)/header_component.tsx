@@ -1,4 +1,9 @@
-import { formatter } from "@/app/(ViewModel)/CalendarButtons/calendar_buttons";
+import {
+    formatter,
+    goNext,
+    goPrev,
+    goSpecificTime,
+} from "@/app/(ViewModel)/CalendarButtons/calendar_buttons";
 import React, {
     memo,
     useContext,
@@ -7,10 +12,17 @@ import React, {
 } from "react";
 
 import { UseContext } from "@/app/(Model)/store";
+import { format } from "date-fns";
 
 import UserMenuPopup from "./addModal/user_menu_popup";
 import FullCalendar from "@fullcalendar/react";
 import { useRouter } from "next/navigation";
+import {
+    DatePicker,
+    LocalizationProvider,
+} from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs, { Dayjs } from "dayjs";
 
 type Props = {
     calendarRef: React.MutableRefObject<FullCalendar | null>;
@@ -26,19 +38,73 @@ const HeaderComponent: React.FC<Props> = memo(
             isUserMenu,
             setIsUserMenu,
             setIsFilter,
+            setBottomNavState,
+            setApiVacations,
+            moveDays,
+            setMoveDays,
         } = context;
         const [year, setYear] = useState<string>("");
         const [month, setMonth] = useState<string>("");
         const router = useRouter();
+
+        const [selectedDate, setSelectedDate] = useState<
+            Dayjs | null | undefined
+        >(dayjs(new Date()));
 
         useEffect(() => {
             setYear(formatter.year(calendarRef));
             setMonth(formatter.monthNumber(calendarRef));
         }, [isSlided]);
 
+        useEffect(() => {
+            if (!calendarRef.current) {
+                console.error(
+                    "calendarRef is not initialized."
+                );
+                return;
+            }
+
+            const calendarApi =
+                calendarRef.current.getApi();
+            console.log(
+                "calendarRef initialized:",
+                calendarApi
+            );
+        }, [calendarRef.current]);
+
+        const monthAndYearHdlr = (
+            selectedDate: Dayjs | null
+        ) => {
+            if (!calendarRef.current) {
+                console.error("calendarRef is not ready.");
+                return;
+            }
+
+            if (selectedDate) {
+                setMoveDays(false);
+            }
+
+            const moveYear = selectedDate?.year()!;
+            const moveMonth = selectedDate?.month()!;
+
+            goSpecificTime(
+                calendarRef,
+                moveYear,
+                moveMonth
+            );
+
+            setYear(moveYear.toString());
+            setMonth((moveMonth + 1).toString());
+        };
+
         return (
             <section className="flex justify-between">
-                <div className="flex flex-col gap-[4px]">
+                <div
+                    className="flex flex-col gap-[4px]"
+                    onClick={() => {
+                        setMoveDays(true);
+                    }}
+                >
                     <div className="font-black text-[24px]">
                         {month}
                     </div>
@@ -46,6 +112,28 @@ const HeaderComponent: React.FC<Props> = memo(
                         {year}
                     </div>
                 </div>
+                {moveDays && (
+                    <div className="absolute z-50 top-28 p-4 bg-bg rounded-lg">
+                        <LocalizationProvider
+                            dateAdapter={AdapterDayjs}
+                            adapterLocale="ko"
+                        >
+                            <DatePicker
+                                className="w-full"
+                                label={"날짜별 검색"}
+                                views={["year", "month"]}
+                                format={"YYYY년 MM월"}
+                                value={selectedDate}
+                                onChange={(newValue) =>
+                                    setSelectedDate(
+                                        newValue
+                                    )
+                                }
+                                onAccept={monthAndYearHdlr}
+                            />
+                        </LocalizationProvider>
+                    </div>
+                )}
 
                 <div className="flex gap-[20px] items-center">
                     {user === null ? (

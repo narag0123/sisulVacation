@@ -16,11 +16,7 @@ import {
     workTypeChangeHdlr,
     workTypeHler,
 } from "@/app/(ViewModel)/utilFuncs/date_picker_hdlr";
-import {
-    AnimatePresence,
-    easeInOut,
-    motion,
-} from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { variantAddModal } from "@/app/(Model)/framer/framer_variant";
 import { EventClickArg } from "@fullcalendar/core/index.js";
 import { DateClickArg } from "@fullcalendar/interaction";
@@ -121,7 +117,7 @@ const AddEventModal: React.FC<Props> = ({
                 zIndex: 100,
             }}
             transition={{
-                type: easeInOut,
+                ease: "easeInOut",
                 duration: 0.2,
             }}
         >

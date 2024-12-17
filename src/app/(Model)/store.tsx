@@ -60,6 +60,11 @@ interface ContextType {
     setNowFilter: React.Dispatch<
         React.SetStateAction<TGroupFilter>
     >;
+    // 연월 클릭해서 이동하는것 담당
+    moveDays: boolean;
+    setMoveDays: React.Dispatch<
+        React.SetStateAction<boolean>
+    >;
 }
 
 // 초기값 설정
@@ -82,6 +87,8 @@ const initialContext: ContextType = {
     setIsFilter: () => {},
     nowFilter: { A: true, B: true, C: true, D: true },
     setNowFilter: () => {},
+    moveDays: false,
+    setMoveDays: () => {},
 };
 
 // Context Provider 전송할거
@@ -118,6 +125,7 @@ const UseProvider = ({
             C: true,
             D: true,
         });
+    const [moveDays, setMoveDays] = useState(false);
 
     // 로그인 상태 새로고침해도 안변하게
     useEffect(() => {
@@ -152,6 +160,8 @@ const UseProvider = ({
                 setIsFilter,
                 nowFilter,
                 setNowFilter,
+                moveDays,
+                setMoveDays,
             }}
         >
             {children}

@@ -23,6 +23,8 @@ const MainPage = () => {
         setIsModifyModal,
         isFilter,
         setIsFilter,
+        moveDays,
+        setMoveDays,
     } = context;
 
     return (
@@ -35,7 +37,8 @@ const MainPage = () => {
                     {(isEventAddModal ||
                         isUserMenu ||
                         isModifyModal ||
-                        isFilter) && (
+                        isFilter ||
+                        moveDays) && (
                         // 검은색 가림막
                         <motion.div
                             className="w-full h-full absolute top-0 left-0 z-10 bg-black100"
@@ -48,6 +51,7 @@ const MainPage = () => {
                                 setIsUserMenu(false);
                                 setIsModifyModal(false);
                                 setIsFilter(false);
+                                setMoveDays(false);
                             }}
                         ></motion.div>
                     )}
