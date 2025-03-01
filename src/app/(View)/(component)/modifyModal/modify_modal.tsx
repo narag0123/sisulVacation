@@ -221,7 +221,7 @@ const ModifyModal: React.FC<Props> = ({
             >
                 <hr className="border-black40" />
                 <div className="flex flex-col w-full">
-                    <div className="flex w-full ">
+                    {/* <div className="flex w-full ">
                         <button
                             className={`w-1/3 border-[1px] border-r-0 border-black60 py-1 rounded-tl-xl ${
                                 Vtype == "초" &&
@@ -273,10 +273,10 @@ const ModifyModal: React.FC<Props> = ({
                         >
                             말번
                         </button>
-                    </div>
+                    </div> */}
                     <div className="flex w-full">
                         <button
-                            className={`w-1/2 border-[1px] border-r-0 border-t-0 border-black60 py-1 rounded-bl-xl ${
+                            className={`w-1/2 border-[1px] border-r-0  border-black60 py-1 rounded-l-xl ${
                                 Vtype == "주" &&
                                 "bg-[black] text-bg"
                             }`}
@@ -293,7 +293,7 @@ const ModifyModal: React.FC<Props> = ({
                             주간
                         </button>
                         <button
-                            className={`w-1/2 border-[1px] border-t-0 border-black60 py-1 rounded-br-xl ${
+                            className={`w-1/2 border-[1px]  border-black60 py-1 rounded-r-xl ${
                                 Vtype == "야" &&
                                 "bg-[black] text-bg"
                             }`}

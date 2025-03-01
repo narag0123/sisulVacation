@@ -21,6 +21,7 @@ export const workTypeHler = (
 
 /**
  * startDate와 endDate의 hour값을 초,중,말 등의 타입에 따라 case-switch로 작성함
+ * @param type "주", "야" 로 변경됨
  * @param type "초", "중", "말", "주", "야"
  */
 export const workTypeSelector = (
@@ -36,34 +37,34 @@ export const workTypeSelector = (
     var timeSetEnd: number;
 
     switch (type) {
-        case "초":
-            timeSetStart = 8;
-            timeSetEnd = 17;
-            break;
+        // case "초":
+        //     timeSetStart = 8;
+        //     timeSetEnd = 17;
+        //     break;
 
-        case "중":
-            timeSetStart = 13;
-            timeSetEnd = 22;
-            break;
+        // case "중":
+        //     timeSetStart = 13;
+        //     timeSetEnd = 22;
+        //     break;
 
-        case "말":
-            timeSetStart = 22;
-            timeSetEnd = 8;
-            break;
+        // case "말":
+        //     timeSetStart = 22;
+        //     timeSetEnd = 8;
+        //     break;
 
         case "주":
-            timeSetStart = 8;
-            timeSetEnd = 20;
+            timeSetStart = 9;
+            timeSetEnd = 21;
             break;
 
         case "야":
-            timeSetStart = 20;
-            timeSetEnd = 8;
+            timeSetStart = 21;
+            timeSetEnd = 9;
             break;
 
         default:
-            timeSetStart = 8;
-            timeSetEnd = 17;
+            timeSetStart = 9;
+            timeSetEnd = 21;
             break;
     }
 
