@@ -4,6 +4,7 @@ import React, {
     useEffect,
     useRef,
 } from "react";
+import EventPopUpNotice from "../(component)/eventNotice/eventNotice";
 import FullCalendarJS from "../(component)/full_calendar";
 import { UseContext } from "@/app/(Model)/store";
 import AddEventModal from "../(component)/addModal/add_event_modal";
@@ -56,6 +57,7 @@ const MainPage = () => {
                         ></motion.div>
                     )}
                 </AnimatePresence>
+                <EventPopUpNotice />
                 <FullCalendarJS />
             </LocalizationProvider>
         </>
